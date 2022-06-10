@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using LeaveManagement.Application.DTOs;
-using LeaveManagement.Application.Features.LeaveTypes.Requests;
+using LeaveManagement.Application.Features.LeaveTypes.Requests.Queries;
 using LeaveManagement.Application.Persistence.Contracts;
 using MediatR;
 using System.Collections.Generic;
