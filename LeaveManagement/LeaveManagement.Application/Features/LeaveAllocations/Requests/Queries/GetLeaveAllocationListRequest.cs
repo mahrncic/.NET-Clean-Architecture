@@ -1,4 +1,4 @@
-﻿using LeaveManagement.Application.DTOs;
+﻿using LeaveManagement.Application.DTOs.LeaveAllocation;
 using MediatR;
 using System.Collections.Generic;
 
