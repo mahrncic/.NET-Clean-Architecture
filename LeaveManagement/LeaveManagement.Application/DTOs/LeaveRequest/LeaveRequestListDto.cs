@@ -1,4 +1,5 @@
 ﻿using LeaveManagement.Application.DTOs.Common;
+using LeaveManagement.Application.DTOs.LeaveType;
 using System;
 
 namespace LeaveManagement.Application.DTOs.LeaveRequest
