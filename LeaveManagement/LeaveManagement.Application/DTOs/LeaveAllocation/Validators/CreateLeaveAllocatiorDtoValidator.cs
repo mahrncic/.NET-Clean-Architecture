@@ -5,7 +5,7 @@ namespace LeaveManagement.Application.DTOs.LeaveAllocation.Validators
 {
     public class CreateLeaveAllocatiorDtoValidator : AbstractValidator<CreateLeaveAllocationDto>
     {
-        public CreateLeaveAllocatiorDtoValidator(ILeaveAllocationRepository leaveAllocationRepository)
+        public CreateLeaveAllocatiorDtoValidator(ILeaveTypeRepository leaveTypeRepository)
         {
             RuleFor(p => p.NumberOfDays)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
@@ -22,8 +22,8 @@ namespace LeaveManagement.Application.DTOs.LeaveAllocation.Validators
                 .GreaterThan(0)
                 .MustAsync(async (leaveTypeId, cancellation) =>
                 {
-                    var leaveType = await leaveAllocationRepository.Get(leaveTypeId);
-                    return leaveType != null;
+                    var leaveTypeExists = await leaveTypeRepository.Exists(leaveTypeId);
+                    return !leaveTypeExists;
                 }).WithMessage("Invalid ID is provided for the Leave Type foreign key."); ;
         }
     }
