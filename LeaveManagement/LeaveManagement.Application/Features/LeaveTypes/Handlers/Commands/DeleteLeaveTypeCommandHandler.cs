@@ -1,6 +1,6 @@
 ﻿using LeaveManagement.Application.Exceptions;
 using LeaveManagement.Application.Features.LeaveTypes.Requests.Commands;
-using LeaveManagement.Application.Persistence.Contracts;
+using LeaveManagement.Application.Contracts.Persistence;
 using LeaveManagement.Domain;
 using MediatR;
 using System.Threading;
