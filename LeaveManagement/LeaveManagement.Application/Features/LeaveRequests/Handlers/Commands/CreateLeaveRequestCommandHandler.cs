@@ -8,6 +8,9 @@ using MediatR;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using LeaveManagement.Application.Contracts.Infrastructure;
+using LeaveManagement.Application.Models;
+using System;
 
 namespace LeaveManagement.Application.Features.LeaveRequests.Handlers.Commands
 {
@@ -15,13 +18,15 @@ namespace LeaveManagement.Application.Features.LeaveRequests.Handlers.Commands
     {
         private readonly ILeaveRequestRepository _leaveRequestRepository;
         private readonly ILeaveTypeRepository _leaveTypeRepository;
+        private readonly IEmailSender _emailSender;
         private readonly IMapper _mapper;
 
-        public CreateLeaveRequestCommandHandler(ILeaveRequestRepository leaveRequestRepository, IMapper mapper, ILeaveTypeRepository leaveTypeRepository)
+        public CreateLeaveRequestCommandHandler(ILeaveRequestRepository leaveRequestRepository, IMapper mapper, ILeaveTypeRepository leaveTypeRepository, IEmailSender emailSender)
         {
             _leaveRequestRepository = leaveRequestRepository;
             _mapper = mapper;
             _leaveTypeRepository = leaveTypeRepository;
+            _emailSender = emailSender;
         }
 
         public async Task<BaseCommandResponse> Handle(CreateLeaveRequestCommand request, CancellationToken cancellationToken)
@@ -44,6 +49,19 @@ namespace LeaveManagement.Application.Features.LeaveRequests.Handlers.Commands
             response.Success = true;
             response.Message = "Creation Successful";
             response.Id = leaveRequest.Id;
+
+            var email = new Email
+            {
+                To = "employee@org.com",
+                Body = $"Your leave request for {request.LeaveRequestDto.StartDate} to {request.LeaveRequestDto.EndDate} has been submitted successfully.",
+                Subject = "Leave Request Submitted"
+            };
+
+            try
+            {
+                await _emailSender.SendEmail(email);
+            }
+            catch (Exception ex) { }
 
             return response;
         }
