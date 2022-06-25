@@ -1,7 +1,6 @@
 ﻿using LeaveManagement.Application.Persistence.Contracts;
 using LeaveManagement.Domain;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
