@@ -1,4 +1,4 @@
-﻿using LeaveManagement.Application.Persistence.Contracts;
+﻿using LeaveManagement.Application.Contracts.Persistence;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;

@@ -2,7 +2,7 @@
 using LeaveManagement.Application.DTOs;
 using LeaveManagement.Application.DTOs.LeaveAllocation;
 using LeaveManagement.Application.Features.LeaveAllocations.Requests.Queries;
-using LeaveManagement.Application.Persistence.Contracts;
+using LeaveManagement.Application.Contracts.Persistence;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
