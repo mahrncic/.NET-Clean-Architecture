@@ -1,3 +1,5 @@
+using LeaveManagement.Application;
+using LeaveManagement.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -7,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Persistence;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +35,10 @@ namespace LeaveManagement.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "LeaveManagement.API", Version = "v1" });
             });
+
+            services.ConfigureApplicationServices();
+            services.ConfigureInfrastructureServices(Configuration);
+            services.ConfigurePersistenceServices(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
