@@ -39,6 +39,14 @@ namespace LeaveManagement.API
             services.ConfigureApplicationServices();
             services.ConfigureInfrastructureServices(Configuration);
             services.ConfigurePersistenceServices(Configuration);
+
+            services.AddCors(o =>
+            {
+                o.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
